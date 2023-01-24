@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>MOU</title>
+    </head>
+    <body>
+        <div class="header" th:fragment="header">
+            <div id="top">
+                <h1 id="title">Men of the Ummah</h1>
+                <h5 id="loggedin"></h5>
+            </div>
+
+            <img class="image" th:src="@{/images/back3.jpg}">
+
+            <div class="topnav" id="myTopnav">
+                <a id="home" href="">Home</a>
+                <a id="aboutus" href="">About Us</a>
+                <a id="events" href="">Events</a>
+                <!-- <a id="admin" href="">Admin</a> -->
+                <a id="login" href="login">Admin Login</a>
+            </div>
+        </div>
+
+        <div class="footer" th:fragment="footer">
+            <h5>Copyright &copy; 2023 Men of the Ummah</h5>
+        </div>
+    </body>
+</html>
