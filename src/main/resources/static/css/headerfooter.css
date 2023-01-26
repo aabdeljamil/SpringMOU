@@ -29,6 +29,10 @@
     z-index: 1;
 }
 
+.footer hr{
+    border-color: black;
+}
+
 .topnav {
     position: relative;
     z-index: 1;
@@ -53,6 +57,11 @@
     color: black;
 }
 
+.topnav a.active {
+    background-color: #f0735d;
+    color: white;
+}
+
 .image {
     opacity: 0.4;
     position: fixed;
@@ -63,9 +72,12 @@
     height: auto;
 }
 
+.topnav .icon {
+    display: none;
+}
+
 @media screen and (max-width: 600px) {
-    .topnav {display: block;}
-    .topnav a {display: none;}
+    .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
         float: right;
         display: block;

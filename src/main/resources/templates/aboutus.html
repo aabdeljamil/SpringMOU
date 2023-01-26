@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>MOU</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=37}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/cdn1.css?version=1}">
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div th:replace="~{headerfooter :: header}"></div>
+        <h1 id="message">About Us Page</h1>
+        <div th:replace="~{headerfooter :: footer}"></div>
+    </body>
+</html>
