@@ -1,6 +1,8 @@
 package com.abdallah.MOUWebsite.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,18 +21,21 @@ public class EventsController {
 	EventRepository eventRepo;
 
     @RequestMapping(value="/events/{eventId}", method=RequestMethod.GET)
-    public String showEvent(@PathVariable long eventId, Model model){
-        model.addAttribute("event", eventRepo.findById(eventId));
+    public String showEvent(@PathVariable long eventId, Model model, @AuthenticationPrincipal User user){
+        boolean loggedIn = false;
+
+        if (user != null){
+            //admin view
+            loggedIn = true;
+            Event event = eventRepo.findById(eventId).orElseThrow(() -> new EntityNotFoundException());
+
+            model.addAttribute("event", eventRepo.findById(eventId));
+            model.addAttribute("registrants", event.getRegistrants());
+        }else{
+            //normal view
+            model.addAttribute("event", eventRepo.findById(eventId));
+        }
+        model.addAttribute("loggedin", loggedIn);
         return "event";
-    }
-
-    //same as showEvent() but also passes the registrants list to display for admins
-    @RequestMapping(value="/events/{eventId}", method=RequestMethod.GET)
-    public String showEventAdmin(@PathVariable long eventId, Model model){
-        Event event = eventRepo.findById(eventId).orElseThrow(() -> new EntityNotFoundException());
-
-        model.addAttribute("event", eventRepo.findById(eventId));
-        model.addAttribute("registrants", event.getRegistrants());
-        return "eventAdmin";
     }
 }

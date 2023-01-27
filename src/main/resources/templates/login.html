@@ -3,11 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>MOU</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=37}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=40}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/login.css?version=16}"/>
     </head>
     <body>
         <div th:replace="~{headerfooter :: header}"></div>
-        <h1 id="message">Login Page</h1>
+        <div class="container">
+            <div th:if="${param.error}" class="error">    
+                Invalid username and/or password.
+            </div>
+            <form th:action="@{/login}" method='post'>
+                <h1 id="message">Login</h1>
+                <div class="container1">
+                    <label for="uname">Username:</label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                
+                    <label for="psw">Password:</label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                        
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
         <div th:replace="~{headerfooter :: footer}"></div>
     </body>
 </html>

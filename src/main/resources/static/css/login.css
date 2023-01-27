@@ -1,0 +1,57 @@
+.container{
+    width: 100%;
+    margin:0 auto;
+    z-index: 1;
+    position: relative;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#message{
+    text-align: center;
+    color: rgb(58, 58, 58);
+}
+
+form {
+    border: 3px solid rgb(58, 58, 58);
+    width: 60%;
+    margin:0 auto;
+}
+
+label{
+    color: rgb(58, 58, 58);
+    font-size: larger;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.container1 {
+    padding: 16px;
+}
+
+.error{
+    text-align: center;
+    color: red;
+    font-size: large;
+    padding-bottom: 1%;
+}

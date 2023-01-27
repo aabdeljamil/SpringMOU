@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <title>MOU</title>
@@ -17,10 +17,8 @@
                 <a id="home" href="/">Home</a>
                 <a id="aboutus" href="/aboutus">About Us</a>
                 <a id="events" href="/events">Events</a>
-                <a id="login" href="login">Admin Login</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
+                <a id="login" href="/login" th:if="${!loggedin}">Admin Login</a>
+                <a id="logout" href="/logout" th:if="${loggedin}">Logout</a>
             </nav>
         </header>
 
