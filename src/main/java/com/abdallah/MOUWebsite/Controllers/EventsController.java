@@ -38,4 +38,16 @@ public class EventsController {
         model.addAttribute("loggedin", loggedIn);
         return "event";
     }
+
+    @RequestMapping(value="/events/newevent")
+    public String newEvent(Model model, @AuthenticationPrincipal User user){
+        boolean loggedIn = false;
+
+        if (user != null){
+            loggedIn = true;
+        }
+
+        model.addAttribute("loggedin", loggedIn);
+        return "newevent";
+    }
 }

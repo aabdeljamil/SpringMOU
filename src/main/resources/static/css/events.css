@@ -1,0 +1,43 @@
+.content {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 3%;
+}
+
+.content img {
+    margin-right: 10px;
+    display: block;
+    width: 600px;
+    height: 400px;
+}
+
+.content h3, .content p {
+    margin: 0;
+}
+
+.content .text{
+    margin-left: 25%;
+    margin-top: 8%;
+}
+
+.eventbutton{
+    position: relative;
+    z-index: 1;
+    float: right;
+    right: 50px;
+    margin: 0 auto;
+}
+
+.eventscontainer{
+    padding-top: 3%;
+}
+
+#message{
+    text-align: center;
+    color: rgb(58, 58, 58);
+    position: relative;
+    z-index: 1;
+}

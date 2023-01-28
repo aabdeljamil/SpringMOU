@@ -23,7 +23,7 @@ public class SecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails admin = User.withUsername("admin")
-            .password(passwordEncoder().encode("KhilafahIsSolution!1"))
+            .password(passwordEncoder().encode("pass"))
             .roles("ADMIN")
             .build();
         return new InMemoryUserDetailsManager(admin);
@@ -32,6 +32,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeHttpRequests()
+                .requestMatchers("/events/newevent")//add all pages that require admin login here
+                .authenticated()
                 .requestMatchers("/**")
                 .permitAll()
             .and()

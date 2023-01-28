@@ -3,11 +3,42 @@
     <head>
         <meta charset="UTF-8">
         <title>MOU</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=37}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/events.css?version=62}"/>
     </head>
     <body>
         <div th:replace="~{headerfooter :: header}"></div>
-        <h1 id="message">Events Page</h1>
+
+        <h1 id="message">Events</h1>
+        <div class="eventbutton">
+            <button onclick="window.location.href='events/newevent'" th:if="${loggedin}">Create Event</button>
+        </div>
+
+        <div class="eventscontainer">
+            <!-- <div class="content" th:each="event : ${events}"> -->
+            <div class="content">
+                <img th:src="@{/images/back.jpg}">
+                <div class="text">
+                    <h1><strong>Event 1</strong></h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="content">
+                <img th:src="@{/images/back2.jpg}">
+                <div class="text">
+                    <h1><strong>Event 2</strong></h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="content">
+                <img th:src="@{/images/back1.png}">
+                <div class="text">
+                    <h1><strong>Event 3</strong></h1>
+                    <p>Description</p>
+                </div>
+            </div>
+        </div>
+
         <div th:replace="~{headerfooter :: footer}"></div>
     </body>
 </html>
