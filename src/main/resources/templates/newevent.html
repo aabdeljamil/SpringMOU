@@ -4,12 +4,25 @@
         <meta charset="UTF-8">
         <title>MOU</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/newevent.css?version=1}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/newevent.css?version=3}"/>
     </head>
     <body>
         <div th:replace="~{headerfooter :: header}"></div>
 
-        <h1 id="message">Create New Event Page</h1>
+        <div class="container">
+            <form th:action="@{/events/newevent}" method='post'>
+                <h1 id="message">Create New Event</h1>
+                <div class="container1">
+                    <label for="username">Name:</label>
+                    <input type="text" placeholder="Enter Name of Event" name="name" required>
+                
+                    <label for="password">Date:</label>
+                    <input type="date" name="date" required>
+                        
+                    <button type="submit">Create</button>
+                </div>
+            </form>
+        </div>
 
         <div th:replace="~{headerfooter :: footer}"></div>
     </body>

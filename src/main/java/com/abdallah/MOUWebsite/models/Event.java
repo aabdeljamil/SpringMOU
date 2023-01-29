@@ -1,6 +1,6 @@
 package com.abdallah.MOUWebsite.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -16,7 +16,7 @@ public class Event {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
-    private Date date;
+    private LocalDate date;
     @OneToMany
     private List<Registrant> registrants;
 
@@ -24,7 +24,7 @@ public class Event {
         super();
     }
 
-    public Event(long id, String name, Date date, List<Registrant> registrants) {
+    public Event(long id, String name, LocalDate date, List<Registrant> registrants) {
         super();
         this.id = id;
         this.name = name;
@@ -48,11 +48,11 @@ public class Event {
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
