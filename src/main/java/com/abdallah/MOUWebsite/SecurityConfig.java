@@ -31,6 +31,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
         http.csrf().disable().authorizeHttpRequests()
                 .requestMatchers("/events/newevent")//add all pages that require admin login here
                 .authenticated()

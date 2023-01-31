@@ -1,4 +1,4 @@
-package com.abdallah.MOUWebsite.repositories;
+package com.abdallah.MOUWebsite.data;
 
 import org.springframework.data.repository.CrudRepository;
 import com.abdallah.MOUWebsite.models.Registrant;

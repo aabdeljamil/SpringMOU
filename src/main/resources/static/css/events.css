@@ -10,17 +10,21 @@
 .content img {
     margin-right: 10px;
     display: block;
-    width: 600px;
+    width: 700px;
     height: 400px;
 }
 
-.content h3, .content p {
-    margin: 0;
+.content .textHolder{
+    position: relative;
+    padding-left: 50%;
+    padding-right: auto;
+    background-color: rgba(153, 153, 153, 0.7);
 }
 
-.content .text{
-    margin-left: 25%;
-    margin-top: 8%;
+.textHolder .text{
+    position: absolute;
+    top: 35%;
+    left: 40%;
 }
 
 .eventbutton{
@@ -32,7 +36,7 @@
 }
 
 .eventscontainer{
-    padding-top: 3%;
+    padding-top: 5%;
 }
 
 #message{

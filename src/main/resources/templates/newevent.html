@@ -13,10 +13,13 @@
             <form th:action="@{/events/newevent}" method='post'>
                 <h1 id="message">Create New Event</h1>
                 <div class="container1">
-                    <label for="username">Name:</label>
+                    <label for="name">Name:</label>
                     <input type="text" placeholder="Enter Name of Event" name="name" required>
+
+                    <label for="desc">Description:</label>
+                    <input type="text" placeholder="Enter Description of Event" name="desc" required>
                 
-                    <label for="password">Date:</label>
+                    <label for="date">Date:</label>
                     <input type="date" name="date" required>
                         
                     <button type="submit">Create</button>

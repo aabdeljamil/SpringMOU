@@ -8,13 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.abdallah.MOUWebsite.repositories.EventRepository;
+import com.abdallah.MOUWebsite.data.EventService;
 
 @Controller
 public class HomeController {
 
     @Autowired
-	EventRepository eventRepo;
+	EventService eventService;
 
     @RequestMapping("/")
     public String home(Model model, @AuthenticationPrincipal User user){
@@ -51,7 +51,7 @@ public class HomeController {
         }
         
         model.addAttribute("loggedin", loggedIn);
-        model.addAttribute("events", eventRepo.findAll());
+        model.addAttribute("events", eventService.getAllEvents());
         return "events";
     }
 

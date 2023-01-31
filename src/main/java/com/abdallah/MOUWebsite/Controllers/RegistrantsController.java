@@ -12,20 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.abdallah.MOUWebsite.data.EventService;
+import com.abdallah.MOUWebsite.data.RegistrantService;
 import com.abdallah.MOUWebsite.models.Registrant;
-import com.abdallah.MOUWebsite.repositories.EventRepository;
-import com.abdallah.MOUWebsite.repositories.RegistrantRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Controller
 public class RegistrantsController {
     
     @Autowired
-	EventRepository eventRepo;
+	EventService eventService;
 
 	@Autowired
-	RegistrantRepository registrantRepo;
+	RegistrantService registrantService;
 
     @RequestMapping(value="events/{eventId}/registration", method=RequestMethod.POST)
     public String register(@PathVariable long eventId, @RequestParam String firstName, @RequestParam String lastName,
@@ -46,7 +44,7 @@ public class RegistrantsController {
         registrant.setParentEmail(parentEmail);
         registrant.setParentName(parentName);
 
-        registrantRepo.save(registrant);
+        registrantService.saveOrUpdate(registrant);
 
         //send email confirmation
 
@@ -62,7 +60,7 @@ public class RegistrantsController {
 
     @RequestMapping(value="events/{eventId}/confirmation/{registrantId}", method=RequestMethod.POST)
     public String confirmRegistration(@PathVariable long registrantId, Model model, @AuthenticationPrincipal User user){
-        Registrant registrant = registrantRepo.findById(registrantId).orElseThrow(() -> new EntityNotFoundException());
+        Registrant registrant = registrantService.getRegistrantById(registrantId);
         String name = registrant.getFirstName() + " " + registrant.getLastName();
         String email = registrant.getEmail();
         boolean loggedIn = false;

@@ -2,27 +2,52 @@ package com.abdallah.MOUWebsite.models;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table
 public class Registrant {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+
+    @Column
 	private String firstName;
+    
+    @Column
 	private String lastName;
+    
+    @Column
     private String parentName;
+    
+    @Column
     private String email;
+    
+    @Column
 	private String parentEmail;
+    
+    @Column
     private int number;
+    
+    @Column
     private int age;
+    
+    @Column
     private String city;
+    
+    @Column
     private boolean carpool;
+    
+    @Column
     private List<String> allergies;
+    
+    @Column
     private List<String> medications;
     
     public Registrant() {
