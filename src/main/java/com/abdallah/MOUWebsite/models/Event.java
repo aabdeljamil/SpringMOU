@@ -3,6 +3,7 @@ package com.abdallah.MOUWebsite.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,16 +17,19 @@ import jakarta.persistence.Table;
 public class Event {
     
     @Id
+    @Column
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-    @Column
+    @Nonnull
+    @Column(length = 255)
 	private String name;
 
-    @Column
+    @Nonnull
+    @Column(length = 255)
     private LocalDate date;
 
-    @Column(length = 2000)
+    @Column(length = 10000)
     private String description;
     
     @Column

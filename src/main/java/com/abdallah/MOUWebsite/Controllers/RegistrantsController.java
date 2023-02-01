@@ -40,7 +40,7 @@ public class RegistrantsController {
         registrant.setCity(city);
         registrant.setEmail(email);
         registrant.setMedications(medications);
-        registrant.setNumber(number);
+        registrant.setPhoneNumber(number);
         registrant.setParentEmail(parentEmail);
         registrant.setParentName(parentName);
 

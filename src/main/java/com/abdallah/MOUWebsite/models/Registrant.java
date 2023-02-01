@@ -2,6 +2,7 @@ package com.abdallah.MOUWebsite.models;
 
 import java.util.List;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,28 +18,33 @@ public class Registrant {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-    @Column
+    @Nonnull
+    @Column(length = 255)
 	private String firstName;
     
-    @Column
+    @Nonnull
+    @Column(length = 255)
 	private String lastName;
     
-    @Column
+    @Column(length = 255)
     private String parentName;
     
-    @Column
+    @Nonnull
+    @Column(length = 255)
     private String email;
     
-    @Column
+    @Column(length = 255)
 	private String parentEmail;
     
+    @Nonnull
     @Column
-    private int number;
+    private long phoneNumber;
     
+    @Nonnull
     @Column
     private int age;
     
-    @Column
+    @Column(length = 255)
     private String city;
     
     @Column
@@ -63,7 +69,7 @@ public class Registrant {
         this.parentName = parentName;
         this.email = email;
         this.parentEmail = parentEmail;
-        this.number = number;
+        this.phoneNumber = number;
         this.age = age;
         this.city = city;
         this.carpool = carpool;
@@ -119,12 +125,12 @@ public class Registrant {
         this.parentEmail = parentEmail;
     }
 
-    public int getNumber() {
-        return number;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setPhoneNumber(int number) {
+        this.phoneNumber = number;
     }
 
     public int getAge() {
