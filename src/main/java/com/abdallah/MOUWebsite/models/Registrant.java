@@ -2,6 +2,7 @@ package com.abdallah.MOUWebsite.models;
 
 import java.util.List;
 
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,15 +28,15 @@ public class Registrant {
 	private String lastName;
     
     @Column(length = 255)
-    private String parentName;
+    private String emergencyName;
+    
+    @Column(length = 255)
+	private String emergencyEmail;
     
     @Nonnull
     @Column(length = 255)
     private String email;
-    
-    @Column(length = 255)
-	private String parentEmail;
-    
+
     @Nonnull
     @Column
     private long phoneNumber;
@@ -55,6 +56,9 @@ public class Registrant {
     
     @Column
     private List<String> medications;
+
+    @Column(columnDefinition = "JAVA_OBJECT")
+    private Object otherQuestions;
     
     public Registrant() {
         super();
@@ -66,9 +70,9 @@ public class Registrant {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.parentName = parentName;
+        this.emergencyName = parentName;
         this.email = email;
-        this.parentEmail = parentEmail;
+        this.emergencyEmail = parentEmail;
         this.phoneNumber = number;
         this.age = age;
         this.city = city;
@@ -101,12 +105,12 @@ public class Registrant {
         this.lastName = lastName;
     }
 
-    public String getParentName() {
-        return parentName;
+    public String getEmergencyName() {
+        return emergencyName;
     }
 
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
+    public void setParentName(String emergencyName) {
+        this.emergencyName = emergencyName;
     }
 
     public String getEmail() {
@@ -117,12 +121,12 @@ public class Registrant {
         this.email = email;
     }
 
-    public String getParentEmail() {
-        return parentEmail;
+    public String getEmergencyEmail() {
+        return emergencyEmail;
     }
 
-    public void setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
+    public void setParentEmail(String emergencyEmail) {
+        this.emergencyEmail = emergencyEmail;
     }
 
     public long getPhoneNumber() {
@@ -172,4 +176,14 @@ public class Registrant {
     public void setMedications(List<String> medications) {
         this.medications = medications;
     }
+
+    public Object getOtherQuestions() {
+        return otherQuestions;
+    }
+
+    public void setOtherQuestions(Object otherQuestions) {
+        this.otherQuestions = otherQuestions;
+    }
+
+    
 }

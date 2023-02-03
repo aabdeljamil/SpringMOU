@@ -207,3 +207,9 @@ INSERT INTO "PUBLIC"."EVENT_REGISTRANTS"("EVENT_ID","REGISTRANTS_ID")VALUES(?,?)
 2023-01-31 23:05:15 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (EVENT_REGISTRANTS: ""EVENT_ID"" BIGINT NOT NULL)"; SQL statement:
 INSERT INTO "PUBLIC"."EVENT_REGISTRANTS"("EVENT_ID","REGISTRANTS_ID")VALUES(?,?) [22018-214]
+2023-02-01 19:31:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]OTHER_QUESTIONS"; SQL statement:
+OTHER_QUESTIONS [42000-214]
+2023-02-01 19:31:16 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]OTHER_QUESTIONS REGISTRANT"; SQL statement:
+OTHER_QUESTIONS REGISTRANT [42000-214]

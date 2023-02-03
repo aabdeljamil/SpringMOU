@@ -23,6 +23,7 @@ public class EventService {
     public Event getEventById(long id){  
         return eventRepository.findById(id).get();  
     }  
+
     public void saveOrUpdate(Event event){  
         eventRepository.save(event);  
     }  

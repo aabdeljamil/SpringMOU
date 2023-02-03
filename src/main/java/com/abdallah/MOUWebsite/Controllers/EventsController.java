@@ -1,6 +1,7 @@
 package com.abdallah.MOUWebsite.Controllers;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -54,13 +55,61 @@ public class EventsController {
     }
 
     @RequestMapping(value="/events/newevent", method=RequestMethod.POST)
-    public String postEvent(@RequestParam String name, @RequestParam String desc, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+    public String postEvent(Model model, @AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String desc, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
         Event event = new Event();
         event.setName(name);
         event.setDate(date);
         event.setDescription(desc);
         eventService.saveOrUpdate(event);
 
+        boolean loggedIn = false;
+
+        if (user != null){
+            loggedIn = true;
+        }
+
+        model.addAttribute("loggedin", loggedIn);
+
+        return "redirect:/events";
+    }
+
+    @RequestMapping(value="/events/editevent")
+    public String editEvent(Model model, @AuthenticationPrincipal User user){
+        boolean loggedIn = false;
+
+        if (user != null){
+            loggedIn = true;
+        }
+
+        model.addAttribute("loggedin", loggedIn);
+        return "newevent";
+    }
+
+    @RequestMapping(value="/events/editevent", method=RequestMethod.POST)
+    public String postEditedEvent(Model model, @AuthenticationPrincipal User user, @RequestParam String eventname){
+        if (eventname != null){
+            eventname = eventname.replace("%20", " ");
+            Event targetEvent = null;
+            List<Event> allEvents = eventService.getAllEvents();
+            for (Event event: allEvents){
+                if (event.getName() == eventname){
+                    targetEvent = event;
+                    break;
+                }
+            }
+
+            model.addAttribute("eventdescription", targetEvent.getDescription());            
+            model.addAttribute("eventname", eventname);
+            model.addAttribute("eventdate", targetEvent.getDate());
+        }
+
+        boolean loggedIn = false;
+
+        if (user != null){
+            loggedIn = true;
+        }
+
+        model.addAttribute("loggedin", loggedIn);
         return "redirect:/events";
     }
 }

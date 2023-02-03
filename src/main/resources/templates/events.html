@@ -5,6 +5,16 @@
         <title>MOU</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/events.css?version=94}"/>
+
+        <script th:inline="javascript">
+            function edit(id) {
+                let temp = document.getElementById(id);
+                let eventName = temp.children[0].children[0].innerHTML;
+        
+                var link = /*[[@{/events/editevent}]]*/ "";
+                window.location.href = link + "?eventname=" + eventName
+            }
+        </script>
     </head>
     <body>
         <div th:replace="~{headerfooter :: header}"></div>
@@ -15,9 +25,9 @@
         </div>
 
         <div class="eventscontainer">
-            <div class="content" th:each="event : ${events}">
-                <img th:src="@{/images/back.jpg}">
-                <div class="textHolder">
+            <div class="content" th:each="event : ${events}" th:if="${loggedin}">
+                <img th:src="@{/images/back1.png}">
+                <div th:id="'event' + ${eventStat.index}" class="textHolder" onclick="edit(this.id)">
                     <div class="text">
                         <h1 th:text="${event.name}"><strong></strong></h1>
                         <p th:text="${event.description}"></p>
@@ -25,33 +35,14 @@
                     </div>
                 </div>
             </div>
-            <div class="content">
-                <img th:src="@{/images/back.jpg}">
-                <div class="textHolder">
-                    <div class="text">
-                        <h1><strong>Event 1</strong></h1>
-                        <p>Description</p>
-                        <h5>Date</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
-                <img th:src="@{/images/back2.jpg}">
-                <div class="textHolder">
-                    <div class="text">
-                        <h1><strong>Event 2</strong></h1>
-                        <p>Description</p>
-                        <h5>Date</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
+
+            <div class="content" th:each="event : ${events}" th:if="${!loggedin}">
                 <img th:src="@{/images/back1.png}">
                 <div class="textHolder">
                     <div class="text">
-                        <h1><strong>Event 3</strong></h1>
-                        <p>Description</p>
-                        <h5>Date</h5>
+                        <h1 th:text="${event.name}"><strong></strong></h1>
+                        <p th:text="${event.description}"></p>
+                        <h5 th:text="${event.date}"></h5>
                     </div>
                 </div>
             </div>

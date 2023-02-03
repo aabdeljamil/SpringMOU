@@ -5,6 +5,26 @@
         <title>MOU</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/newevent.css?version=3}"/>
+
+        <script th:inline="javascript">
+            var prev_handler = window.onload;
+            window.onload = function () {
+                if (prev_handler) {
+                    prev_handler();
+                }
+
+                document.getElementById("submitbutton").innerText = "Update Event";
+                document.getElementById("message").innerHTML = "Edit Event";
+                
+                document.getElementById("eventname").value = /*[[${eventname}]]*/ "";
+                document.getElementById("eventdescription").value = /*[[${eventdescription}]]*/ "";
+
+                console.log(/*[[${eventdate}]]*/ "");
+                console.log(/*${eventname}*/ "");
+                console.log(/*${eventdescription}*/ "");
+                //document.getElementById("eventdate").value = "";
+            }
+        </script>
     </head>
     <body>
         <div th:replace="~{headerfooter :: header}"></div>
@@ -14,15 +34,15 @@
                 <h1 id="message">Create New Event</h1>
                 <div class="container1">
                     <label for="name">Name:</label>
-                    <input type="text" placeholder="Enter Name of Event" name="name" required>
+                    <input id="eventname" type="text" placeholder="Enter Name of Event" name="name" required>
 
                     <label for="desc">Description:</label>
-                    <input type="text" placeholder="Enter Description of Event" name="desc" required>
+                    <input id="eventdescription" type="text" placeholder="Enter Description of Event" name="desc" required>
                 
                     <label for="date">Date:</label>
-                    <input type="date" name="date" required>
+                    <input id="eventdate" type="date" name="date" required>
                         
-                    <button type="submit">Create</button>
+                    <button id="submitbutton" type="submit">Create Event</button>
                 </div>
             </form>
         </div>
