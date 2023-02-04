@@ -213,3 +213,15 @@ OTHER_QUESTIONS [42000-214]
 2023-02-01 19:31:16 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]OTHER_QUESTIONS REGISTRANT"; SQL statement:
 OTHER_QUESTIONS REGISTRANT [42000-214]
+2023-02-03 15:36:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]/dt event"; SQL statement:
+/dt event [42000-214]
+2023-02-03 15:36:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]\\dt event"; SQL statement:
+\dt event [42000-214]
+2023-02-03 15:36:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]\\dt"; SQL statement:
+\dt [42000-214]
+2023-02-03 15:36:24 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]/dt"; SQL statement:
+/dt [42000-214]

@@ -4,25 +4,24 @@
         <meta charset="UTF-8">
         <title>MOU</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/newevent.css?version=3}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/newevent.css?version=4}"/>
 
         <script th:inline="javascript">
-            var prev_handler = window.onload;
+            //var prev_handler = window.onload;
             window.onload = function () {
-                if (prev_handler) {
-                    prev_handler();
+                // if (prev_handler) {
+                //     prev_handler();
+                // }
+
+                var eventname = /*[[${eventname}]]*/ "";
+                if (eventname != null){//editing, not creating
+                    document.getElementById("submitbutton").innerText = "Update Event";
+                    document.getElementById("message").innerHTML = "Edit Event";
+                    
+                    document.getElementById("eventname").value = eventname;
+                    document.getElementById("eventdescription").value = /*[[${eventdescription}]]*/ "";
+                    document.getElementById("eventdate").value = /*[[${eventdate}]]*/ "";
                 }
-
-                document.getElementById("submitbutton").innerText = "Update Event";
-                document.getElementById("message").innerHTML = "Edit Event";
-                
-                document.getElementById("eventname").value = /*[[${eventname}]]*/ "";
-                document.getElementById("eventdescription").value = /*[[${eventdescription}]]*/ "";
-
-                console.log(/*[[${eventdate}]]*/ "");
-                console.log(/*${eventname}*/ "");
-                console.log(/*${eventdescription}*/ "");
-                //document.getElementById("eventdate").value = "";
             }
         </script>
     </head>
@@ -31,6 +30,7 @@
 
         <div class="container">
             <form th:action="@{/events/newevent}" method='post'>
+                <h3 id="flashmessage" th:text="${flashmessage}"></h3>
                 <h1 id="message">Create New Event</h1>
                 <div class="container1">
                     <label for="name">Name:</label>

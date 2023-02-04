@@ -22,7 +22,7 @@ public class Event {
 	private long id;
 
     @Nonnull
-    @Column(length = 255)
+    @Column(length = 255, unique = true)
 	private String name;
 
     @Nonnull

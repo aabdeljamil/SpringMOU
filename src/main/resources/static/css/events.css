@@ -30,9 +30,7 @@
 .eventbutton{
     position: relative;
     z-index: 1;
-    float: right;
-    right: 50px;
-    margin: 0 auto;
+    text-align: center;
 }
 
 .eventscontainer{
@@ -44,4 +42,15 @@
     color: rgb(58, 58, 58);
     position: relative;
     z-index: 1;
+}
+
+button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
 }

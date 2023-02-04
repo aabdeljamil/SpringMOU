@@ -1,7 +1,6 @@
 package com.abdallah.MOUWebsite.Controllers;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,12 +38,33 @@ public class EventsController {
             //normal view
             model.addAttribute("event", eventService.getEventById(eventId));
         }
+
         model.addAttribute("loggedin", loggedIn);
+
         return "event";
     }
 
-    @RequestMapping(value="/events/newevent")
-    public String newEvent(Model model, @AuthenticationPrincipal User user){
+    @RequestMapping(value="/events/newevent", method={RequestMethod.GET, RequestMethod.POST})
+    public String postEvent(Model model, @AuthenticationPrincipal User user, RedirectAttributes redirAttrs, @RequestParam(required = false) String name, @RequestParam(required = false) String desc, @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        //check if inputted name already exists in database (must be unique)
+        Event duplicate = eventService.getEventByName(name);
+
+        if (duplicate != null){
+            redirAttrs.addFlashAttribute("flashmessage", "Event already exists, try another name.");
+            return "redirect:/events/newevent";
+        }
+        
+        //user submitted form
+        if (name != null && desc != null && date != null){
+            Event event = new Event();
+            event.setName(name);
+            event.setDate(date);
+            event.setDescription(desc);
+            eventService.saveOrUpdate(event);
+
+            return "redirect:/events";
+        }
+
         boolean loggedIn = false;
 
         if (user != null){
@@ -51,16 +72,23 @@ public class EventsController {
         }
 
         model.addAttribute("loggedin", loggedIn);
+
         return "newevent";
     }
 
-    @RequestMapping(value="/events/newevent", method=RequestMethod.POST)
-    public String postEvent(Model model, @AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String desc, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
-        Event event = new Event();
-        event.setName(name);
-        event.setDate(date);
-        event.setDescription(desc);
-        eventService.saveOrUpdate(event);
+    @RequestMapping(value="/events/editevent/{id}", method={RequestMethod.GET, RequestMethod.POST})
+    public String postEditedEvent(Model model, @AuthenticationPrincipal User user, @PathVariable long id, @RequestParam(required = false) String name, @RequestParam(required = false) String desc, @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        Event event = eventService.getEventById(id);
+
+        //user submitted form
+        if (name != null && desc != null && date != null){
+            event.setName(name);
+            event.setDate(date);
+            event.setDescription(desc);
+            eventService.saveOrUpdate(event);
+
+            return "redirect:/events";
+        }
 
         boolean loggedIn = false;
 
@@ -69,47 +97,17 @@ public class EventsController {
         }
 
         model.addAttribute("loggedin", loggedIn);
+        model.addAttribute("eventdescription", event.getDescription());            
+        model.addAttribute("eventname", event.getName());
+        model.addAttribute("eventdate", event.getDate());
 
-        return "redirect:/events";
-    }
-
-    @RequestMapping(value="/events/editevent")
-    public String editEvent(Model model, @AuthenticationPrincipal User user){
-        boolean loggedIn = false;
-
-        if (user != null){
-            loggedIn = true;
-        }
-
-        model.addAttribute("loggedin", loggedIn);
         return "newevent";
     }
 
-    @RequestMapping(value="/events/editevent", method=RequestMethod.POST)
-    public String postEditedEvent(Model model, @AuthenticationPrincipal User user, @RequestParam String eventname){
-        if (eventname != null){
-            eventname = eventname.replace("%20", " ");
-            Event targetEvent = null;
-            List<Event> allEvents = eventService.getAllEvents();
-            for (Event event: allEvents){
-                if (event.getName() == eventname){
-                    targetEvent = event;
-                    break;
-                }
-            }
-
-            model.addAttribute("eventdescription", targetEvent.getDescription());            
-            model.addAttribute("eventname", eventname);
-            model.addAttribute("eventdate", targetEvent.getDate());
-        }
-
-        boolean loggedIn = false;
-
-        if (user != null){
-            loggedIn = true;
-        }
-
-        model.addAttribute("loggedin", loggedIn);
+    @RequestMapping("/events/deleteevent/{id}")
+    public String deleteEvent(@PathVariable long id){
+        eventService.delete(id);
+        
         return "redirect:/events";
     }
 }

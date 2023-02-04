@@ -33,7 +33,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/events/newevent", "/events/editevent")//add all pages that require admin login here
+                .requestMatchers("/events/newevent", "/events/editevent", "/events/editevent/**")//add all pages that require admin login here
                 .authenticated()
                 .requestMatchers("/**")
                 .permitAll()

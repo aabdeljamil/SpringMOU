@@ -16,12 +16,26 @@ public class EventService {
 
     public List<Event> getAllEvents(){  
         List<Event> events = new ArrayList<Event>();  
-        eventRepository.findAll().forEach(event -> events.add(event));  
+        eventRepository.findAll().forEach(event -> events.add(event));
         return events;  
     }  
 
     public Event getEventById(long id){  
         return eventRepository.findById(id).get();  
+    }  
+
+    public Event getEventByName(String name){  
+        List<Event> events = new ArrayList<Event>();  
+        eventRepository.findAll().forEach(event -> events.add(event));
+        Event targetEvent = null;
+
+        for (Event event : events){
+            if (event.getName().equals(name)){
+                targetEvent = event;
+                break;
+            }
+        }
+        return targetEvent;  
     }  
 
     public void saveOrUpdate(Event event){  

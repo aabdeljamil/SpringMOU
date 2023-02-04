@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>MOU</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/headerfooter.css?version=38}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/events.css?version=94}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/events.css?version=102}"/>
 
         <script th:inline="javascript">
             function edit(id) {
@@ -21,17 +21,26 @@
 
         <h1 id="message">Events</h1>
         <div class="eventbutton">
-            <button onclick="window.location.href='events/newevent'" th:if="${loggedin}">Create Event</button>
+            <button id="createbutton" onclick="window.location.href='events/newevent'" th:if="${loggedin}">Create Event</button>
         </div>
 
         <div class="eventscontainer">
             <div class="content" th:each="event : ${events}" th:if="${loggedin}">
                 <img th:src="@{/images/back1.png}">
-                <div th:id="'event' + ${eventStat.index}" class="textHolder" onclick="edit(this.id)">
+                <!-- onclick="edit(this.id)" -->
+                <div th:id="'event' + ${eventStat.index}" class="textHolder">
                     <div class="text">
                         <h1 th:text="${event.name}"><strong></strong></h1>
                         <p th:text="${event.description}"></p>
                         <h5 th:text="${event.date}"></h5>
+                        <div>
+                            <a th:href="@{/events/editevent/{id}(id=${event.id})}"> 
+                                <button type="button">Edit</button> 
+                            </a>
+                            <a th:href="@{/events/deleteevent/{id}(id=${event.id})}"> 
+                                <button type="button">Delete</button> 
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
